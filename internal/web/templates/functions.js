@@ -61,8 +61,13 @@ function getUserTimeZone() {
     return Intl.DateTimeFormat().resolvedOptions().timeZone;
 }
 
+function getLocale() {
+    const lang = localStorage.getItem('lang') || 'en';
+    return lang === 'zh' ? 'zh-CN' : 'en-US';
+}
+
 function formatMonth(date) {
-    return date.toLocaleDateString('en-US', {
+    return date.toLocaleDateString(getLocale(), {
         year: 'numeric',
         month: 'long',
         timeZone: getUserTimeZone()
@@ -81,7 +86,7 @@ function getISODateWithLocalTime(dateInput) {
 
 function formatDateFromUTC(utcDateString) {
     const date = new Date(utcDateString);
-    return date.toLocaleDateString('en-US', {
+    return date.toLocaleDateString(getLocale(), {
         month: 'short',
         day: 'numeric',
         year: 'numeric',
