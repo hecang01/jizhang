@@ -306,6 +306,7 @@
         }
 
         async function initialize() {
+            applyI18n();
             try {
                 const configResponse = await fetch('/config');
                 if (!configResponse.ok) throw new Error('Failed to fetch configuration');
@@ -337,6 +338,7 @@
                 console.error('Failed to initialize table:', error);
                 document.getElementById('tableContainer').innerHTML = 
                     '<div class="no-data">' + t('errorLoadingExpenses') + '</div>';
+                applyI18n();
             }
         }
 
@@ -388,7 +390,7 @@
                 closeDeleteModal();
             } catch (error) {
                 console.error('Error deleting expense:', error);
-                alert('Failed to delete expense. Please try again.');
+                alert(t('failedToDeleteExpense'));
             }
         }
 
