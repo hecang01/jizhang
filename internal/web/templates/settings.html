@@ -99,6 +99,7 @@
                         <option value="en" data-i18n="english">English</option>
                         <option value="zh" data-i18n="chinese">中文</option>
                     </select>
+                    <button id="saveLanguage" class="nav-button" data-i18n="save">Save</button>
                 </div>
                 <div id="languageMessage" class="form-message"></div>
             </div>
@@ -844,8 +845,8 @@
         const languageSelect = document.getElementById('languageSelect');
         const currentLang = localStorage.getItem('lang') || 'en';
         languageSelect.value = currentLang;
-        languageSelect.addEventListener('change', (e) => {
-            setLanguage(e.target.value);
+        document.getElementById('saveLanguage').addEventListener('click', () => {
+            setLanguage(languageSelect.value);
             showMessage('languageMessage', t('languageSaved'), true);
         });
 
